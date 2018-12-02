@@ -9,13 +9,19 @@ export default class MainApp extends Component {
         super(props);
         this.state = {
             loggedOn: false,
-            token:""
+            token:"",
+            username:""
         }
         this.userLoggedOn = this.userLoggedOn.bind(this);
+        this.userLoggedOut = this.userLoggedOut.bind(this);
     }
 
-    userLoggedOn(value,userToken) {
-        this.setState({ loggedOn: value, token: userToken });
+    userLoggedOn(value,userToken,username) {
+        this.setState({ loggedOn: value, token: userToken , username });
+    }
+
+    userLoggedOut(){
+        this.setState({ loggedOn: false});
     }
 
     render() {
@@ -23,7 +29,7 @@ export default class MainApp extends Component {
             <div className="MainAppContainer">
                 {!this.state.loggedOn ?
                     <Login userLoggedOn={this.userLoggedOn} /> :
-                    <TenantManagmentPage token={this.state.token}/>}
+                    <TenantManagmentPage username ={this.state.username} token={this.state.token} userLoggedOut={this.userLoggedOut}/>}
             </div >
         )
     }

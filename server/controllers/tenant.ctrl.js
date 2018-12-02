@@ -24,8 +24,7 @@ class Tenant {
     }
 
     async deleteTenantById(req, res) {
-        const { tenantId } = req.body;
-        console.log("tenantId", tenantId);
+        const {tenantId} = req.body; 
         try {
             const answer = await TenantDB.deleteOne({ '_id': tenantId });
             res.status(200).json({ success: true });
@@ -35,12 +34,10 @@ class Tenant {
         }
     }
 
-
     async updateTenant(req, res) {
-        const { TenantToUpdate } = req.body;
-        console.log("TenantToUpdate", TenantToUpdate);
+        const tenant = req.body;
         try {
-            await TenantDB.updateOne({'_id':TenantToUpdate._id}, TenantToUpdate);
+            await TenantDB.updateOne({ '_id': tenant._id }, tenant);
             res.status(200).json({ success: true });
         }
         catch (e) {

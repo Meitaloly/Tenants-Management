@@ -1,0 +1,35 @@
+.LoginContainer{
+    position:fixed;
+    top: 50%;
+    left: 50%;
+    width:30em;
+    height:18em;
+    margin-top: -9em; 
+    margin-left: -15em;
+}
+
+::-webkit-input-placeholder {
+    text-align: center;
+ }
+ 
+ :-moz-placeholder { /* Firefox 18- */
+    text-align: center;  
+ }
+ 
+ ::-moz-placeholder {  /* Firefox 19+ */
+    text-align: center;  
+ }
+ 
+ :-ms-input-placeholder {  
+    text-align: center; 
+ }
+
+ .userNameInput, .passwordInput{
+    width: 200px;
+    height: 20px;
+    margin-bottom: 10px;
+ }
+
+ .loginBtn{
+     width: 150px;
+ }

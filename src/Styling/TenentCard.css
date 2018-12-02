@@ -17,4 +17,19 @@
     bottom: 25%;
     margin: auto;
     background: white;
+    height: 400px;
+  }
+
+  .cardBtns{
+    margin-right: 10px;
+    width: 120px;
+  }
+
+  input{
+    width: 250px;
+  }
+
+  #btn
+  {
+    width:60px;
   }

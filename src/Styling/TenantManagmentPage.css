@@ -1,0 +1,31 @@
+#filter{
+    margin-right:10px;
+}
+
+.addBtn{
+    width:160px;
+}
+
+.filterAndBtn
+{
+    margin-top:10px;
+}
+
+#searchText, .searchBtn
+{
+    margin-right:10px;
+}
+
+.searchBtn{
+    width:100px;
+}
+
+.signOutBtn{
+    margin-left:10px;
+    width:100px;
+}
+
+.logoutContainer{
+    margin-bottom: 20px;
+    margin-top:20px;
+}

@@ -4,6 +4,7 @@ const checkToken = require('./../helpers/checkTokenMiddleware');
 
 const User = require('./../controllers/user.ctrl');
 router.post("/user/login", User.login);
+router.post("/user/signOut", checkToken, User.signOut);
 router.post("/user", User.add);
 router.get("/user", User.getUser);
 

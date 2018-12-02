@@ -1,9 +1,23 @@
 import React, { Component } from 'react'
 import './../Styling/TenantsTable.css';
 export default class TenantsTable extends Component {
+
+    constructor(props) {
+        super(props);
+        this.openExistingTenantCard = this.openExistingTenantCard.bind(this);
+        this.deleteTenant = this.deleteTenant.bind(this);
+    }
+
+    openExistingTenantCard(e) {
+        this.props.showExistingTenantCard(e.target.className);
+    }
+
+    deleteTenant(e) {
+        this.props.deleteTenantById(e.target.className);
+    }
+
     render() {
         let { tenants } = this.props;
-        console.log(tenants);
         return (
             <div className="TenantsTableContainer">
                 <table className="TenantsTable">
@@ -24,8 +38,8 @@ export default class TenantsTable extends Component {
                                 <td> {tenant.phone} </td>
                                 <td> {tenant.address} </td>
                                 <td> {tenant.financial_debt} </td>
-                                <td><button>edit</button></td>
-                                <td><button>delete</button></td>
+                                <td><button id="btn"className={tenant._id} onClick={(e)=>{this.openExistingTenantCard(e)}}>edit</button></td>
+                                <td><button id="btn" className={tenant._id} onClick={(e)=>{this.deleteTenant(e)}}>delete</button></td>
 
                             </tr>
                         </tbody>

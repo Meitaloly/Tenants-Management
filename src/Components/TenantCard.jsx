@@ -7,13 +7,37 @@ export default class TenantCard extends Component {
     super(props);
     this.state = {
       newTenant: this.props.isNewTenant,
-      tenantDetails: {}
+      tenantDetails: this.props.tenantDetails,
+      newTenantDetails: {
+        name: "",
+        address: "",
+        phone: "",
+        financial_debt: ""
+      },
+      IsDebtNumber: false
     }
+    //check if all fields in the card are filled and the debts are a number. 
+    this.checkCardAndUpdate = this.checkCardAndUpdate.bind(this);
   }
 
   componentDidMount() {
-    if (!this.props.isNewTenant) {
-      this.setState({ tenantDetails: this.props.tenantDetails });
+    if (!this.state.newTenant) {
+      this.setState({ newTenantDetails: this.state.tenantDetails });
+    }
+  }
+
+  checkCardAndUpdate() {
+    const { newTenantDetails } = this.state;
+    if (newTenantDetails.name !== "" && newTenantDetails.address !== "" && newTenantDetails.phone !== "" && newTenantDetails.financial_debt !== "") {
+      if (isNaN(newTenantDetails.financial_debt)) {
+        alert("financial debt has to be a number");
+      }
+      else {
+        this.props.updateDB(this.state.newTenant, this.state.newTenantDetails)
+      }
+    }
+    else {
+      alert("you have to fill all fields!");
     }
   }
 
@@ -25,33 +49,53 @@ export default class TenantCard extends Component {
           <h1>Tenant Card</h1>
           <div className="cardDetails">
             <div>
-              <span>Name:</span>
-              {newTenant ?
-                <input className="nameInput" type="text" /> :
-                <span>{tenantDetails.name} </span>}
+              <div>Name:</div>
+              <input className="nameInput" type="text"
+                value={newTenant ? this.state.newTenantDetails.name : tenantDetails.name}
+                onChange={(e) => {
+                  let copy = this.state.newTenantDetails;
+                  copy.name = e.target.value;
+                  this.setState({ newTenantDetails: copy });
+                }} />
             </div>
             <div>
-              <span>Phone Number: </span>
-              {newTenant ?
-                <input className="phoneField" type="text" /> :
-                <span>{tenantDetails.phone} </span>}
+              <div>Phone Number: </div>
+              <input className="phoneField" type="text"
+                value={newTenant ? this.state.newTenantDetails.phone : tenantDetails.phone}
+                onChange={(e) => {
+                  let copy = this.state.newTenantDetails;
+                  copy.phone = e.target.value;
+                  this.setState({ newTenantDetails: copy });
+                }} />
             </div>
             <div >
-              <span>Address: </span>
-              {newTenant ?
-                <input className="addressField" type="text" /> :
-                <span>{tenantDetails.address} </span>}
+              <div>Address: </div>
+              <input className="addressField" type="text"
+                value={newTenant ? this.state.newTenantDetails.address : tenantDetails.address}
+                onChange={(e) => {
+                  let copy = this.state.newTenantDetails;
+                  copy.address = e.target.value;
+                  this.setState({ newTenantDetails: copy });
+                }} />
             </div>
             <div >
-              <span>Financial Debt: </span>
-              {newTenant ?
-                <input className="addressField" type="text" /> :
-                <span>{tenantDetails.financial_debt} </span>}
+              <div>Financial Debt: </div>
+              <input className="addressField" type="text"
+                value={newTenant ? this.state.newTenantDetails.financial_debt : tenantDetails.financial_debt}
+                onChange={(e) => {
+                  let copy = this.state.newTenantDetails;
+                  copy.financial_debt = e.target.value;
+                  this.setState({ newTenantDetails: copy });
+                }} />
             </div>
           </div>
-          <button>{this.state.newTenant ? "Add Tenant" : "Update Tenant"}</button>
+          <br />
+            <button  className="cardBtns" onClick={this.checkCardAndUpdate}>{this.state.newTenant ? "Add Tenant" : "Update Tenant"}</button>
+            <button  className="cardBtns" onClick={this.props.closeTenantCard}>Cancel</button>
         </div>
       </div>
     );
   }
 }
+
+

@@ -35,6 +35,7 @@ class User {
                 }
                 else {
                     const log = new LogsDB({ "event": "SIGN_IN", "user": user._id });
+                    log.time=new Date().toLocaleString();
                     const newLog = log.save();
                     const token = jwt.create({ userName });
                     res.status(200).json({ success: isMatch, data: user, token });
@@ -43,6 +44,22 @@ class User {
         }
         catch (e) {
             console.log("user is not exists!");
+            res.status(400).json({ success: false, message: e });
+        }
+    }
+
+
+    async signOut(req, res) {
+        try {
+            const {username} = req.body;
+            const user = await UserDB.findOne({ 'userName': username });
+            const log = new LogsDB({ "event": "SIGN_OUT", "user": user._id });
+            log.time=new Date().toLocaleString();
+            const newLog = await log.save();
+            res.status(200).json({ success: true });
+        }
+        catch (e) {
+            console.log(e);
             res.status(400).json({ success: false, message: e });
         }
     }

@@ -8,7 +8,6 @@ const create = function (user) {
 const verifyToken = function (token) {
     return new Promise((resolve, reject) => {
         try {
-            console.log("token:",token)
             resolve(jwt.verify(token, salt));
         }
         catch (e) {
