@@ -2,27 +2,25 @@
   "name": "oxs-assignment",
   "version": "0.1.0",
   "private": true,
-  "dependencies": {
-    "body-parser": "^1.18.3",
-    "cloudinary": "^1.13.2",
-    "compression": "^1.7.3",
-    "connect-multiparty": "^2.2.0",
-    "cors": "^2.8.5",
-    "express": "^4.16.4",
-    "helmet": "^3.15.0",
-    "mongoose": "^5.3.14",
-    "react": "^16.6.3",
-    "react-dom": "^16.6.3",
-    "react-scripts": "2.1.1"
-  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "server": "nodemon ./server.js"
   },
-  "eslintConfig": {
-    "extends": "react-app"
+  "dependencies": {
+    "axios": "^0.18.0",
+    "bcrypt": "^3.0.2",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "jquery": "^3.3.1",
+    "jsonwebtoken": "^8.4.0",
+    "mongoose": "^5.3.14",
+    "nodemon": "^1.18.7",
+    "react": "^16.6.3",
+    "react-dom": "^16.6.3",
+    "react-scripts": "2.1.1"
   },
   "browserslist": [
     ">0.2%",
