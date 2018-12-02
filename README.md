@@ -9,7 +9,7 @@
     yarn start
     (the client runs on port 3001)
 
-## To run mongodb:
+## 3) To run mongodb:
     mongod
 
 # Login To App:
